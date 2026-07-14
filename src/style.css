@@ -7,21 +7,31 @@
 
 /* A few starting variables you can change or build on. */
 :root {
-  --bg: #f4f4f5;
-  --surface: #ffffff;
-  --text: #1f2933;
-  --muted: #6b7280;
-  --accent: #3b82f6;
-  --border: #d1d5db;
+  --bg: #333333c4;
+  --surface: #1b1b1bcd;
+  --text: #dfffdc;
+  --muted: #b5d7b7;
+  --accent: #3bf667;
+  --border: #d1d5db42;
   --radius: 8px;
   --gap: 1rem;
   --mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+}
+
+.preload * {
+  transition: none !important;
+  -webkit-transition: none !important;
+  animation: none !important;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+h1, p {
+  color: --;
 }
 
 body {
@@ -33,14 +43,25 @@ body {
   display: flex;
   justify-content: center;
   padding: 2rem 1rem;
+  background-image: url("Images/background.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(2px) brightness(1.1);
 }
 
 .app {
   width: 100%;
-  max-width: 640px;
+  max-width: 90%;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
 }
 
 .app__header h1 {
@@ -53,13 +74,43 @@ body {
 }
 
 .panel {
+  backdrop-filter: blur(0);
+
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem;
+  padding: 1rem; 
+  transition: all .5s ease-in-out;
+} 
+
+.panel:hover,
+.panel:has(textarea:not(textarea[id="output"]):focus-visible) {
+  z-index: 10;  
+  box-shadow: 
+    0 0 10px #2bff004c,
+    0 0 30px #002f1543, 
+    0 0 60px #00ff3c; 
+}
+
+
+input[id="shift"] {
+  accent-color: #123e21;
+  transition: accent-color 2s ease-in-out;
+}
+
+input[id="shift"]::-webkit-slider-runnable-track {
+  background: rgb(11, 26, 11);
+  cursor: grab;
+}
+
+input[id="shift"]:hover {
+    transition: accent-color .05s ease-in-out;
+  accent-color: var(--accent);
 }
 
 label {
@@ -76,7 +127,20 @@ textarea {
   border-radius: var(--radius);
   background: var(--bg);
   color: inherit;
+  outline: none;
+  transition: background-color .5s ease-in-out, transform .5s ease-in-out;
 }
+
+textarea:hover {
+  background-color: rgba(0, 0, 0, 0.406);
+  outline: none;
+}
+
+textarea:not(textarea[id="output"]):focus-visible {
+  background-color: rgba(0, 0, 0, 0.406);
+
+}
+
 
 .controls {
   gap: 0.75rem;
@@ -98,9 +162,71 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  color: inherit;
+  color: inherit; 
+  transition: all 1s ease-in-out;
+}
+
+
+button:active {
+  scale: .95;
 }
 
 button:hover {
+
+  backdrop-filter: blur(2px) brightness(2);
+  transform: scale(100vw);
   border-color: var(--accent);
+    box-shadow: 
+    0 0 5px #2bff00,
+    0 0 15px #00ff73, 
+    0 0 30px #11ff0069; 
+  transition: all .1s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 10px; 
+  height: 10px; 
+}
+
+::-webkit-scrollbar-track {  
+  transition: all .1s ease-in-out;
+  background: #232e3300;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6baf8d; 
+  border-radius: 4px;
+  border: 2px solid #232e33; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  
+  background: #17a73692;
+}
+
+@media screen and (min-width: 768px) {
+.main-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap)
+}
+
+textarea {
+  height:100%;
+}
+
+.main-content {
+  height: 100%;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+}
+
 }

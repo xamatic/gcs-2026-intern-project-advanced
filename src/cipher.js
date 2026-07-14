@@ -49,6 +49,68 @@
 // Take it one hint at a time. When every test passes, you're done!
 
 export function caesarCipher(text, shift) {
-  // TODO: replace this line with your implementation.
-  throw new Error('caesarCipher is not implemented yet')
+    console.clear();
+    // TODO: replace this line with your implementation.
+
+    // Variable setups.
+    let correctedChar = ""
+    var cipheredText = "";
+    let textSplit = text.split('');
+    let supportedChars = "abcdefghijklmnopqrstuvwxyz".split('');
+
+    // For loop that takes in all textSplit objects into account and uses it to check all characters.
+    for (var i in textSplit) {
+      // Variables for the rest of the code in the blocks below.
+      //       isUpperCase: Self explanitory. 
+      // charIndexLocation: Checks the exact character Location
+      let isUpperCase = (textSplit[i] === textSplit[i].toUpperCase())
+      let charIndexLocation = supportedChars.indexOf(textSplit[i].toLowerCase());
+
+      // Checks to verify that the index exists
+      if (supportedChars.indexOf(textSplit[i].toLowerCase()) >= 0) {
+        let newIndex = (charIndexLocation + shift) % 26;
+        if (newIndex < 0) newIndex += 26;
+
+        let correctedChar = supportedChars[newIndex];
+        // Makes sure that upper case letters are not ignored
+        if (isUpperCase) {
+          cipheredText += correctedChar.toUpperCase(); 
+        } else if (!isUpperCase) {
+          cipheredText += correctedChar
+        }
+    
+        
+        console.log(shift);
+
+      } else {
+        cipheredText += textSplit[i];
+      }
+    }
+    return cipheredText;
+    throw new Error('caesarCipher is not implemented yet')
 }
+
+/* Failed code.
+  var isUpperCase = (textSplit[i] === textSplit[i].toUpperCase())
+        if (supportedChars.indexOf(textSplit[i].toLowerCase()) > 0) {
+            // Find current Character Index
+            let charIndexLocation = supportedChars.indexOf(textSplit[i]);
+            // Check to see if characters match
+            if (textSplit[i] == supportedChars[charIndexLocation]) {
+                // Allow characters to shift
+                console.log(charIndexLocation);
+                
+                if ((charIndexLocation + shift) < charIndexLocation.toString().length) {
+                    text.split[i] = supportedChars[charIndexLocation + shift]
+                    console.log("Shifted with: Lessthen length " + text);
+                } else {
+                    text.split[i] = supportedChars[0 + shift]
+                    console.log("Shifted with: Greater then length " + text);
+                }
+                //console.log(text);
+            }
+            //console.log(charIndexLocation);
+        } else {
+          
+        }
+*/
