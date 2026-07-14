@@ -31,3 +31,5 @@ One function handles both directions: encoding uses a positive shift, decoding u
 | `index.html` | The page structure (your styling canvas). |
 | `src/style.css` | Styles — **make it your own.** |
 | `src/main.js` | Wires the page to the cipher. No changes needed to finish the task. |
+
+## Implementations
