@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caesar Cipher</title>
+  </head>
+  <body>
+    <!--
+      This is your canvas. The structure below is intentionally plain.
+      The IDs are used by src/main.js to wire up the tool — please keep
+      them. Everything else (classes, layout, wrapper elements, styling)
+      is yours to shape. Make it look great in src/style.css.
+    -->
+    <main class="app">
+      <header class="app__header">
+        <h1>Caesar Cipher</h1>
+        <p>Shift each letter through the alphabet to encode or decode a message.</p>
+      </header>
+
+      <!-- The message the user types in -->
+      <section class="panel">
+        <label for="input">Message</label>
+        <textarea id="input" rows="4" placeholder="Type your message here..."></textarea>
+      </section>
+
+      <!-- How many places to shift each letter (1–25) -->
+      <section class="panel controls">
+        <label for="shift">Shift: <output id="shift-value">3</output></label>
+        <input id="shift" type="range" min="1" max="25" value="3" />
+
+        <div class="buttons">
+          <button id="encode" type="button">Encode</button>
+          <button id="decode" type="button">Decode</button>
+        </div>
+      </section>
+
+      <!-- The result appears here -->
+      <section class="panel">
+        <label for="output">Result</label>
+        <textarea id="output" rows="4" readonly placeholder="Your result will appear here..."></textarea>
+        <button id="copy" type="button">Copy result</button>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
